@@ -1,0 +1,55 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+
+<FirstWindow>:
+    name: "main"
+    orientation:'vertical'
+    Label:
+        text: 'Some very long line which will be cut'
+
+
+    Button:
+        text:"NOT next"
+        on_release: app.root.current = "second"
+
+<SecondWindow>:
+    name: "second"
+
+    Label:
+        pos_hint: {"center_x": 0.95, "center_y": 0.95}
+        text: "Добро пожаловать домой"
+        color: 1, 1, 1, 1
+
+    MDBoxLayout:
+        pos_hint:{'x': 1, 'y': 0}
+        orientation:'horizontal'
+        size_hint: 0.950, 0.1
+        md_bg_color: 0, 1, 1, .5
+        radius: [16, ]
+
+    MDBoxLayout:
+        pos_hint:{'x': 0.025, 'y': 0.025}
+        orientation:'horizontal'
+        padding: 15
+        spacing: 10
+        size_hint: 0.950, 0.1
+        md_bg_color: 0, 1, 1, .5
+        radius: [16, ]
+        Button:
+            radius: [24, ]
+            background_color: 0, 0, 0.2, 1
+            text:"next"
+            on_release: app.root.current = "main"
+        Button:
+            radius: [24, ]
+            background_color: 0, 0, 0.2, 1
+            text:"next"
+            on_release: app.root.current = "main"
+        Button:
+            radius: [24, ]
+            background_color: 0, 0, 0.2, 1
+            text:"next"
+            on_release: app.root.current = "main"
+
