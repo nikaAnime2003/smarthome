@@ -1,0 +1,142 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+<FirstWindow>:
+    name: "main"
+    MDCard:
+        size_hint: None, None
+        size: self.parent.width - dp(52), self.parent.height - dp(72)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        md_bg_color:get_color_from_hex("edceba")
+        padding: 20
+        spacing: 30
+        orientation: "vertical"
+        MDLabel:
+            text: "Login"
+            font_style: "Button"
+            font_size: 45
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+        MDTextField:
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 220
+            font_size:20
+            pos_hint: {"center_x":.5}
+        MDTextField:
+            hint_text: "passvord"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 220
+            font_size:20
+            pos_hint: {"center_x":.5}
+        MDRoundFlatButton:
+            text: "SIGN-UP"
+            pos_hint: {"center_x":.5}
+            font_size: 15
+            on_release: app.root.current = "second"
+        Widget:
+            size_hint_y: None
+            height: self.parent.height / 4.5
+
+<SecondWindow>:
+    name: "second"
+
+    MDBoxLayout:
+        pos_hint:{"top":1}
+        size_hint_y: .45
+        md_bg_color: get_color_from_hex("edceba")
+        Image:
+            source: "zxc.png"
+            size_hint: None, None
+            opacity: .3
+            keep_ratio: False
+            size:self.parent.width - dp(52), self.parent.height - dp(72)
+            pos_hint:{"center_y": .70}
+
+    MDLabel:
+        text: "Добро пожаловать домой,\n#Username"
+        bold: True
+        font_size: 17
+        source: "21028.ttf"
+        color: get_color_from_hex("#363445")
+        pos_hint: {"center_y": .92}
+        x: "24dp"
+
+
+    MDGridLayout:
+        cols: 2
+        rows: 2
+        spacing: "5dp"
+        padding: "17dp"
+        size_hint_y: None
+        height: root.height / 1.5
+        pos_hint: {"center_y": .45}
+
+        Button:
+        Button:
+        Button:
+        Button:
+
+
+    MDGridLayout:
+        pos_hint:{"top":1}
+        pos_hint:{"center_y": .82}
+        rows: 1
+        cols: 4
+        spacing: "7dp"
+        padding: "19dp"
+        size_hint_y:None
+        height: root.height / 12
+        RoundedButton:
+            text:"гостинная"
+            on_release: app.root.current = "main"
+        RoundedButton:
+            text:"спальня"
+            on_release: app.root.current = "main"
+        RoundedButton:
+            text:"кухня"
+            on_release: app.root.current = "main"
+        RoundedButton:
+            text:"ванная"
+            on_release: app.root.current = "main"
+
+    MDBoxLayout:
+        size_hint_y: .10
+        MDBottomNavigation:
+            height: root.height / 12
+            width: root.width
+            MDBottomNavigationItem:
+                name: "1"
+                icon: "calendar"
+                text: "today"
+            MDBottomNavigationItem:
+                name: "2"
+                icon: "calendar"
+                text: "today"
+            MDBottomNavigationItem:
+                name: "3"
+                icon: "calendar"
+                text: "next today"
+
+<RoundedButton@Button>
+    orientation:"vertical"
+    color: get_color_from_hex("#363445")
+    background_color: (0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#FFFAFA")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [8]
+
+
+
+
