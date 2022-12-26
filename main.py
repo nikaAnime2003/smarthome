@@ -4,17 +4,17 @@ from kivy.utils import rgba
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.uix.widget import Widget
 from kivymd.uix.screen import MDScreen
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
+_name = ""
 cred = credentials.Certificate("test-a35ab-firebase-adminsdk-6es2b-4348e672df.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://test-a35ab-default-rtdb.firebaseio.com/'
 })
-
-ref = db.reference('')
 '''ref.push({
     'Employee':
         {
@@ -30,6 +30,10 @@ ref = db.reference('Employee')
     'pass': '1234'
 })'''
 print(ref.get())
+
+
+class update(Widget):
+    pass
 
 
 class RootScreen(MDScreen):
@@ -49,7 +53,6 @@ class WindowManager(ScreenManager):
 
 
 class MainApp(MDApp):
-
     def sent_data(self, login, password):
         data = {
             'Email': login,
@@ -59,14 +62,16 @@ class MainApp(MDApp):
         for i in asd:
             if asd[i]['name'] == login:
                 if asd[i]['pass'] == password:
-                    print(login +" вход успешен!")
+                    print(login + " вход успешен!")
+                    _name = asd[i]['name']
                     return True
                 else:
                     print("пароль неправильный")
             else:
                 print("invalid user")
 
-
+    def getName(self):
+        return _name
 
     def build(self):
         return Builder.load_file('ZXCHouse.kv')

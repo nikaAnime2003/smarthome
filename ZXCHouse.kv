@@ -41,7 +41,8 @@ WindowManager:
             text: "SIGN-UP"
             pos_hint: {"center_x":.5}
             font_size: 15
-            on_release:app.root.current = "second" if app.sent_data(username.text, password.text) else "main"
+            on_release:
+                app.root.current = "second" if app.sent_data(username.text, password.text) else "main"
         Widget:
             size_hint_y: None
             height: self.parent.height / 4.5
@@ -53,16 +54,10 @@ WindowManager:
         pos_hint:{"top":1}
         size_hint_y: .45
         md_bg_color: get_color_from_hex("edceba")
-        Image:
-            source: "zxc.png"
-            size_hint: None, None
-            opacity: .3
-            keep_ratio: False
-            size:self.parent.width - dp(52), self.parent.height - dp(72)
-            pos_hint:{"center_y": .70}
 
     MDLabel:
-        text: "Добро пожаловать домой,\n#Username"
+        id: helloLabel
+        text: "Добро пожаловать домой,\n"
         bold: True
         font_size: 17
         source: "21028.ttf"
