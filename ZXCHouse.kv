@@ -22,6 +22,7 @@ WindowManager:
             size_hint_y: None
             height: self.texture_size[1]
         MDTextField:
+            id: username
             hint_text: "username"
             icon_right: "account"
             size_hint_x: None
@@ -29,7 +30,8 @@ WindowManager:
             font_size:20
             pos_hint: {"center_x":.5}
         MDTextField:
-            hint_text: "passvord"
+            id:password
+            hint_text: "password"
             icon_right: "eye-off"
             size_hint_x: None
             width: 220
@@ -39,7 +41,7 @@ WindowManager:
             text: "SIGN-UP"
             pos_hint: {"center_x":.5}
             font_size: 15
-            on_release: app.root.current = "second"
+            on_release:app.root.current = "second" if app.sent_data(username.text, password.text) else "main"
         Widget:
             size_hint_y: None
             height: self.parent.height / 4.5
